@@ -1,4 +1,4 @@
-/* Reset/Box-Sizing (optional but helps to keep layout predictable) */
+/* Reset box-sizing for consistent layout */
 * {
     margin: 0;
     padding: 0;
@@ -11,54 +11,146 @@
     color: #fff;           /* Light text */
   }
   
-  /* Container that holds the sidebar and the main content */
-  .container {
+  /* Header / Navigation Container */
+  .header {
+    width: 100%;
+    padding: 1rem 2rem; /* Space around the nav */
     display: flex;
-  }
-  
-  /* Sidebar styling */
-  .sidebar {
-    width: 220px;          /* Adjust width as desired */
-    background-color: #282828;
-    height: 100vh;         /* Full viewport height so it spans the page */
-    position: fixed;       /* Stays fixed on the left side */
+    justify-content: flex-end; /* Push nav to the right */
+    align-items: center;
+    position: fixed;
     top: 0;
     left: 0;
+    z-index: 999;       /* Keep nav on top when scrolling */
+    background-color: #111; /* Match body background (or use a slightly darker shade if you like) */
   }
   
-  /* Navigation list inside sidebar */
-  .sidebar ul {
+  /* Top Navigation */
+  .top-nav ul {
     list-style-type: none;
-    margin-top: 100px; /* Push menu items down a bit */
-    padding: 20px;
+    display: flex;
+    gap: 2rem; /* Spacing between items */
   }
   
-  .sidebar ul li {
-    margin: 20px 0;
-  }
-  
-  .sidebar ul li a {
+  .top-nav ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 300;
+    font-size: 1rem;
+    transition: color 0.3s;
   }
   
-  /* Main content area */
-  .main-content {
-    /* Account for the fixed sidebar width */
-    margin-left: 220px;
-    width: calc(100% - 220px);
+  .top-nav ul li a:hover {
+    color: #00aaff; /* Hover color */
+  }
+  
+  /* Hero Section */
+  .hero {
+    /* Full viewport height minus header's height */
+    height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100vh; /* Full viewport height */
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem;  /* Ensures hero text isn’t overlapped by fixed header */
   }
   
-  /* Large heading in the center */
-  .main-content h1 {
+  .hero h1 {
+    font-size: 8rem;          /* Make the text large */
+    letter-spacing: 3px;      /* Spacing between letters */
+    text-transform: uppercase; /* Optional style */
+    line-height: 1.2;
+  }
+  
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #111; /* Same dark color to blend in */
+  }
+  
+  /* Portfolio Page Styles */
+.portfolio {
+    padding: 6rem 2rem 2rem; /* Extra top padding to avoid the fixed header */
+    text-align: center;
+  }
+  
+  .portfolio h1 {
     font-size: 3rem;
-    letter-spacing: 2px;
-    text-transform: uppercase; /* optional style choice */
+    margin-bottom: 2rem;
+  }
+  
+  /* Grid layout for project cards */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Styling for each project card */
+  .project-card {
+    background-color: #222;  /* Contrasting background container */
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .project-card h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .project-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Simple hover effect to lift the card and slightly change background */
+  .project-card:hover {
+    transform: translateY(-5px);
+    background-color: #333;
+  }
+
+  /* Services Page Styles */
+.services {
+    padding: 6rem 2rem 2rem; /* Extra top padding to account for the fixed header */
+    text-align: center;
+  }
+  
+  .services h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Grid layout for service cards */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Styling for each service card */
+  .service-card {
+    background-color: #222; /* Contrasting container background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s, background-color 0.3s;
+  }
+  
+  .service-card h2 {
+    margin-bottom: 1rem;
+  }
+  
+  .service-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Hover effect for the cards */
+  .service-card:hover {
+    transform: translateY(-5px);
+    background-color: #333;
   }
   
