@@ -1,29 +1,233 @@
+/* Reset box-sizing for consistent layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #111;
+    /* Dark background */
     color: #fff;
+    /* Light text */
+}
+
+/* Header / Navigation Container */
+.header {
+    width: 100%;
+    padding: 1rem 2rem;
+    /* Space around the nav */
+    display: flex;
+    justify-content: flex-end;
+    /* Push nav to the right */
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    /* Keep nav on top when scrolling */
+    background-color: #111;
+    /* Match body background (or use a slightly darker shade if you like) */
+}
+
+/* Top Navigation */
+.top-nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    /* Spacing between items */
+}
+
+.top-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.top-nav ul li a:hover {
+    color: #00aaff;
+    /* Hover color */
+}
+
+/* Hero Section */
+.hero {
+    /* Full viewport height minus header's height */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem;
+    /* Ensures hero text isn’t overlapped by fixed header */
+}
+
+.hero h1 {
+    font-size: 8rem;
+    /* Make the text large */
+    letter-spacing: 3px;
+    /* Spacing between letters */
+    text-transform: uppercase;
+    /* Optional style */
+    line-height: 1.2;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #111;
+    /* Same dark color to blend in */
+}
+
+/* Portfolio Page Styles */
+.portfolio {
+    padding: 6rem 2rem 2rem;
+    /* Extra top padding to avoid the fixed header */
     text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.portfolio h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+/* Grid layout for project cards */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-nav ul li a {
+/* Styling for each project card */
+.project-card {
+    background-color: #222;
+    /* Contrasting background container */
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.project-card h2 {
+    margin-bottom: 1rem;
+}
+
+.project-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Simple hover effect to lift the card and slightly change background */
+.project-card:hover {
+    transform: translateY(-5px);
+    background-color: #333;
+}
+
+/* Services Page Styles */
+.services {
+    padding: 6rem 2rem 2rem;
+    /* Extra top padding to account for the fixed header */
+    text-align: center;
+}
+
+/* Spacing and formatting for the services intro paragraph */
+.services-intro {
+    margin-bottom: 2rem;
+    /* Adds padding between the intro and the cards */
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+
+.services h1 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Grid layout for service cards */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Styling for each service card */
+.service-card {
+    background-color: #222;
+    /* Contrasting container background */
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.service-card h2 {
+    margin-bottom: 1rem;
+}
+
+.service-card p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Hover effect for the cards */
+.service-card:hover {
+    transform: translateY(-5px);
+    background-color: #333;
+}
+
+/* Contact Page Styles */
+.contact {
+    padding: 6rem 2rem 2rem;
+    /* extra top padding for the fixed header */
+    text-align: center;
+}
+
+.contact h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: #222;
+    /* Contrasting container background */
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.contact-info p {
+    margin: 1rem 0;
+}
+
+.contact-info a {
     color: #00aaff;
     text-decoration: none;
 }
 
-.button {
-    background-color: #00aaff;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* About Page Styles */
+.about {
+    padding: 6rem 2rem 2rem;
+    /* extra top padding for the fixed header */
+    text-align: center;
+}
+
+.about h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.about p {
+    max-width: 700px;
+    margin: 1.5rem auto;
+    line-height: 1.6;
 }
