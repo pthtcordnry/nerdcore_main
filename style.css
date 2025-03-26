@@ -13,6 +13,12 @@ body {
     /* Light text */
 }
 
+/* Hide mobile toggle elements by default */
+.nav-toggle,
+.nav-toggle-label {
+    display: none;
+}
+
 /* Header / Navigation Container */
 .header {
     width: 100%;
@@ -141,7 +147,6 @@ body {
     font-size: 1.1rem;
 }
 
-
 .services h1 {
     font-size: 3rem;
     margin-bottom: 2rem;
@@ -230,4 +235,75 @@ body {
     max-width: 700px;
     margin: 1.5rem auto;
     line-height: 1.6;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  /* Show mobile toggle on smaller screens */
+  .nav-toggle-label {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: relative;
+  }
+  /* Create hamburger icon using pseudo-elements */
+  .nav-toggle-label span,
+  .nav-toggle-label span::before,
+  .nav-toggle-label span::after {
+    content: '';
+    background: #fff;
+    display: block;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+  }
+  .nav-toggle-label span {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .nav-toggle-label span::before {
+    top: -8px;
+  }
+  .nav-toggle-label span::after {
+    top: 8px;
+  }
+
+  /* Adjust header layout */
+  .header {
+    justify-content: space-between;
+    padding: 1rem;
+  }
+
+  /* Hide the navigation menu by default */
+  .top-nav ul {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    left: 0;
+    background-color: #111;
+    flex-direction: column;
+    display: none;
+    text-align: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+  .top-nav ul li {
+    margin: 0.5rem 0;
+  }
+
+  /* Show the menu when toggle is checked */
+  .nav-toggle:checked + .nav-toggle-label + .top-nav ul {
+    display: flex;
+  }
+
+  /* Scale down hero section for mobile */
+  .hero {
+    padding-top: 80px; /* ensure content isn’t hidden behind fixed header */
+  }
+  .hero h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    padding: 0 1rem;
+  }
 }
