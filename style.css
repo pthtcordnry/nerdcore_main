@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Redgar';
+    src: url('fonts/Redgar.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Reset box-sizing for consistent layout */
 * {
     margin: 0;
@@ -5,12 +12,22 @@
     box-sizing: border-box;
 }
 
+/* Apply custom font to main content areas only */
+main, 
+.about p, 
+.contact p, 
+.contact-info, 
+.portfolio p, 
+.project-card, 
+.services-intro, 
+.service-card {
+    font-family: 'Redgar', sans-serif;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #111;
-    /* Dark background */
-    color: #fff;
-    /* Light text */
+    background-color: #111; /* Dark background */
+    color: #fff; /* Light text */
 }
 
 /* Hide mobile toggle elements by default */
@@ -22,16 +39,14 @@ body {
 /* Header / Navigation Container */
 .header {
     width: 100%;
-    padding: 1rem 2rem;
-    /* Space around the nav */
+    padding: 1rem 2rem; /* Space around the nav */
     display: flex;
-    justify-content: flex-end;
-    /* Push nav to the right */
+    justify-content: flex-end; /* Push nav to the right */
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 999; 
     /* Keep nav on top when scrolling */
     background-color: #111;
     /* Match body background (or use a slightly darker shade if you like) */
@@ -41,8 +56,7 @@ body {
 .top-nav ul {
     list-style-type: none;
     display: flex;
-    gap: 2rem;
-    /* Spacing between items */
+    gap: 2rem; /* Spacing between items */
 }
 
 .top-nav ul li a {
@@ -53,43 +67,38 @@ body {
 }
 
 .top-nav ul li a:hover {
-    color: #00aaff;
-    /* Hover color */
+    color: #00aaff; /* Hover color */
 }
 
-/* Hero Section */
+/* Hero Section (with an image instead of text) */
 .hero {
-    /* Full viewport height minus header's height */
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 4rem;
-    /* Ensures hero text isn’t overlapped by fixed header */
+    padding-top: 4rem; 
+    /* Ensures hero image isn’t overlapped by fixed header */
 }
 
-.hero h1 {
-    font-size: 8rem;
-    /* Make the text large */
-    letter-spacing: 3px;
-    /* Spacing between letters */
-    text-transform: uppercase;
-    /* Optional style */
-    line-height: 1.2;
+/* Make hero image responsive */
+.hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Footer */
 .footer {
     text-align: center;
     padding: 1rem;
-    background-color: #111;
+    background-color: #111; 
     /* Same dark color to blend in */
 }
 
 /* Portfolio Page Styles */
 .portfolio {
-    padding: 6rem 2rem 2rem;
+    padding: 6rem 2rem 2rem; 
     /* Extra top padding to avoid the fixed header */
     text-align: center;
 }
@@ -110,7 +119,7 @@ body {
 
 /* Styling for each project card */
 .project-card {
-    background-color: #222;
+    background-color: #222; 
     /* Contrasting background container */
     padding: 1.5rem;
     border-radius: 8px;
@@ -134,21 +143,21 @@ body {
 
 /* Services Page Styles */
 .services {
-    padding: 6rem 2rem 2rem;
+    padding: 6rem 2rem 2rem; 
     /* Extra top padding to account for the fixed header */
     text-align: center;
 }
 
 /* Spacing and formatting for the services intro paragraph */
 .services-intro {
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; 
     /* Adds padding between the intro and the cards */
     line-height: 1.6;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 .services h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     margin-bottom: 2rem;
 }
 
@@ -163,7 +172,7 @@ body {
 
 /* Styling for each service card */
 .service-card {
-    background-color: #222;
+    background-color: #222; 
     /* Contrasting container background */
     padding: 1.5rem;
     border-radius: 8px;
@@ -172,10 +181,11 @@ body {
 
 .service-card h2 {
     margin-bottom: 1rem;
+    font-size: 2.1rem;
 }
 
 .service-card p {
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.5;
 }
 
@@ -187,23 +197,25 @@ body {
 
 /* Contact Page Styles */
 .contact {
-    padding: 6rem 2rem 2rem;
+    padding: 6rem 2rem 2rem; 
     /* extra top padding for the fixed header */
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .contact h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 4rem;
+    margin-bottom: 1.2rem;
 }
 
 .contact-info {
     max-width: 600px;
     margin: 2rem auto;
-    background-color: #222;
+    background-color: #222; 
     /* Contrasting container background */
     border-radius: 8px;
     padding: 2rem;
+    font-size: 1.5rem;
 }
 
 .contact-info p {
@@ -213,6 +225,7 @@ body {
 .contact-info a {
     color: #00aaff;
     text-decoration: none;
+    font-size: 1.2rem;
 }
 
 .contact-info a:hover {
@@ -221,13 +234,13 @@ body {
 
 /* About Page Styles */
 .about {
-    padding: 6rem 2rem 2rem;
+    padding: 6rem 2rem 2rem; 
     /* extra top padding for the fixed header */
     text-align: center;
 }
 
 .about h1 {
-    font-size: 2.5rem;
+    font-size: 4rem;
     margin-bottom: 1.5rem;
 }
 
@@ -235,6 +248,7 @@ body {
     max-width: 700px;
     margin: 1.5rem auto;
     line-height: 1.6;
+    font-size: 1.2rem;
 }
 
 /* Mobile Styles */
@@ -299,11 +313,6 @@ body {
 
   /* Scale down hero section for mobile */
   .hero {
-    padding-top: 80px; /* ensure content isn’t hidden behind fixed header */
-  }
-  .hero h1 {
-    font-size: 3rem;
-    letter-spacing: 2px;
-    padding: 0 1rem;
+    padding-top: 80px;
   }
 }
