@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Galactic Grayzone - NerdCore Enterprises</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('gg-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>Galactic Grayzone</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="gg-main-image"
+        class="main-image"
+        src="images/gg/logo.png"
+        alt="Galactic Grayzone Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/gg/logo.png"
+        alt="Galactic Grayzone Banner"
+        onclick="updateMainImage('images/gg/logo.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/gg/editor.png"
+        alt="Galactic Grayzone Thumbnail 1"
+        onclick="updateMainImage('images/gg/editor.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/gg/gameplay.png"
+        alt="Galactic Grayzone Thumbnail 2"
+        onclick="updateMainImage('images/gg/gameplay.png')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        This is an interactive game showcasing modern C/C++ programming. It leverages the power of raylib for rendering and dearImGui for the graphical user interface. The project includes both a standard game mode and an editor mode.
+      </p>
+      <p>
+        <a href="https://github.com/pthtcordnry/galactic-grayzone">Github: Galactic Grayzone</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

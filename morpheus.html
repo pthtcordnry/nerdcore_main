@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Morpheus - NerdCore Enterprises</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('morpheus-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>Morpheus</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="morpheus-main-image"
+        class="main-image"
+        src="images/morpheus/morpheus_banner.jpg"
+        alt="Morpheus Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/morpheus/morpheus_banner.jpg"
+        alt="Morpheus Banner"
+        onclick="updateMainImage('images/morpheus/morpheus_banner.jpg')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/morpheus/slime.gif"
+        alt="Morpheus Thumbnail 1"
+        onclick="updateMainImage('images/morpheus/slime.gif')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/morpheus/golem.gif"
+        alt="Morpheus Thumbnail 2"
+        onclick="updateMainImage('images/morpheus/golem.gif')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        Morpheus is an immersive, story-driven adventure that blends puzzle-solving 
+        with rich narrative elements. Players journey through a dreamlike universe, 
+        unraveling mysteries across shifting landscapes and interacting with a cast of 
+        enigmatic characters. Developed in Unity, Morpheus delivers a truly engaging experience.
+      </p>
+      <p>
+        <a href="https://www.infinitivegames.com/morpheus.html">Infinitive Games: Morpheus</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
