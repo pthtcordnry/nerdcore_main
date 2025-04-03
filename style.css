@@ -267,9 +267,10 @@ a {
     margin: 2rem 0;
 }
 .main-image {
-    width: 600px;   
-    height: 400px;       
-    object-fit: cover;   
+    width: 600px;       /* Fixed width on larger screens */
+    max-width: 100%;    /* Don’t exceed screen size on mobile */
+    height: auto;       /* Maintain aspect ratio */
+    object-fit: contain;/* Ensures the entire image is visible if dimensions differ */
     display: block;
     margin: 0 auto;
     border: 1px solid #555;
