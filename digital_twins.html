@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Industry Digital Twins - Unity Technologies</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('dt-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>Digital Twins</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="dt-main-image"
+        class="main-image"
+        src="images/dt/windfarm.avif"
+        alt="DigitalTwins Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/dt/windfarm.avif"
+        alt="Digital Twins Banner"
+        onclick="updateMainImage('images/dt/windfarm.avif')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/dt/yvr.avif"
+        alt="Digital Twins Thumbnail 1"
+        onclick="updateMainImage('images/dt/yvr.avif')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/dt/YVR_2.avif"
+        alt="Digital Twins Thumbnail 2"
+        onclick="updateMainImage('images/dt/YVR_2.avif')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        Delivered immersive applications across AR, VR, web, mobile, and desktop platforms. Reached vast audiences with seamless multi-platform support, leveraged cutting-edge devices, and helped create interactive experiences that engage customers and stakeholders wherever they are.
+      </p>
+      <p>
+        <a href="https://unity.com/products/unity-industry?utm_source=google&utm_medium=cpc&utm_campaign=nxt_dd_ind_amer_amer-t1_en_aw_sem-gg_acq_br-pr_2023-04_industry-brand_cc3022_ev-br_id:71700000121354049&utm_content=nxt_dd_ind_amer_aw_sem_gg_ev-br_pros_x_ggl_cpc_x_sd_all_x_x_usecase_id:58700008854536311&utm_term=unity%20industry&&&&&gad_source=1&gclid=CjwKCAjw47i_BhBTEiwAaJfPpv_B0Oph1Cbe-ulMWMA84Mg5R2zE1CdGnPrPQi2lkjMoLiDvJYXgtRoCdf0QAvD_BwE&gclsrc=aw.ds">Unity: Digital Twins</a><br>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

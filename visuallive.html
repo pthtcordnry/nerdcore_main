@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VisualLive - VisualLive LLC / Unity Technologies</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('vl-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>VisualLive</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="vl-main-image"
+        class="main-image"
+        src="images/vl/logo.png"
+        alt="VisualLive Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/vl/logo.png"
+        alt="VisualLive Banner"
+        onclick="updateMainImage('images/vl/logo.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/vl/overview.png"
+        alt="VisualLive Thumbnail 1"
+        onclick="updateMainImage('images/vl/overview.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/vl/hololens.png"
+        alt="VisualLive Thumbnail 2"
+        onclick="updateMainImage('images/vl/hololens.png')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        With VisualLive, you can push your 3D models to your mobile device to view in 1:1 scale, 
+        bringing the virtual world into the jobsite using our Revit and Navisworks plugins. 
+        Your BIM is locked down to its real-world location so you can freely walk around the 
+        model and explore it from all angles.
+      </p>
+      <p>
+        <a href="https://create.unity.com/visual-live-onboarding">Unity: VisualLive</a><br>
+        <a href="https://apps.apple.com/us/app/visuallive/id1294836946">Appstore: VisualLive</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

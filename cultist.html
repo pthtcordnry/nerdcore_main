@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cultist - NerdCore Enterprises</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('cultist-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>Cultist Astronaut</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="cultist-main-image"
+        class="main-image"
+        src="images/cultist/cultist_banner.jpg"
+        alt="Cultist Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/cultist/cultist_banner.jpg"
+        alt="Cultist Banner"
+        onclick="updateMainImage('images/cultist/cultist_banner.jpg')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/cultist/surrounded.png"
+        alt="Cultist Thumbnail 1"
+        onclick="updateMainImage('images/cultist/surrounded.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/cultist/cultist_gameplay.jpg"
+        alt="Cultist Thumbnail 2"
+        onclick="updateMainImage('images/cultist/cultist_gameplay.jpg')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        Run and gun through a galaxy of cults and doom! This fast-paced, 
+        action platformer puts you in the hooves of a Goatling armed with an Eldritch gun 
+        and a fierce attitude towards heretics.
+      </p>
+      <p>
+        <a href="https://www.infinitivegames.com/cultist-astronaut.html">Infinitive Games: Cultist Astronaut</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

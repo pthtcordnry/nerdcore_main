@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Discourage search engines from indexing (if desired) -->
+  <meta name="robots" content="noindex"> 
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reflect - Unity Technologies</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Simple script to swap main image based on thumbnail click -->
+  <script>
+    function updateMainImage(newSrc) {
+      const mainImg = document.getElementById('reflect-main-image');
+      mainImg.src = newSrc;
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Normal Header -->
+  <header class="header">
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="portfolio">
+    <h1>Reflect</h1>
+
+    <!-- Large Main Image -->
+    <div class="main-image-container">
+      <img
+        id="reflect-main-image"
+        class="main-image"
+        src="images/reflect/logo.png"
+        alt="Reflect Main Image"
+      />
+    </div>
+
+    <!-- Image Gallery (Thumbnails) -->
+    <div class="gallery-container">
+      <img
+        class="gallery-thumb"
+        src="images/reflect/logo.png"
+        alt="Reflect Banner"
+        onclick="updateMainImage('images/reflect/logo.png')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/reflect/ipad.webp"
+        alt="reflect Thumbnail 1"
+        onclick="updateMainImage('images/reflect/ipad.webp')"
+      />
+      <img
+        class="gallery-thumb"
+        src="images/reflect/ARModes2022.webp"
+        alt="reflect Thumbnail 2"
+        onclick="updateMainImage('images/reflect/ARModes2022.webp')"
+      />
+    </div>
+
+    <!-- Description -->
+    <section class="description-section">
+      <h2>Description</h2>
+      <p>
+        Unity Reflect facilitated the integration of Building Information Modeling (BIM) data and other CAD data into Unity's real-time engine, enabling interactive 3D visualization and collaboration. It allowed multiple users to access and interact with the same 3D models, facilitating better communication and coordination among project stakeholders. Unity Reflect was available on various platforms, including PC, Mac, iOS, and Android, as well as VR headsets like HTC Vive and Oculus Rift. 
+      </p>
+      <p>
+        <a href="https://unity.com/products/unity-reflect-develop">Unity: Reflect</a><br>
+      </p>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
