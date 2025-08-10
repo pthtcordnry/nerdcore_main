@@ -1,27 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Discourage search engines from indexing (if desired) -->
-  <meta name="robots" content="noindex"> 
-
+  <meta name="robots" content="noindex">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galactic Grayzone - NerdCore Enterprises</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Galactic Grayzone — Portfolio Project | NerdCore Enterprises</title>
+
+  <!-- Your site styles (fonts/colors). Loaded first; this page adds scoped layout styles below. -->
   <link rel="stylesheet" href="style.css" />
-  
-  <!-- Simple script to swap main image based on thumbnail click -->
-  <script>
-    function updateMainImage(newSrc) {
-      const mainImg = document.getElementById('gg-main-image');
-      mainImg.src = newSrc;
+
+  <!-- Page-scoped styles (no global font rules) -->
+  <style>
+    :root { --header-offset: 0px; }
+
+    /* --- Layout container --- */
+    .project-layout{
+      --gap:1rem; --gap-lg:2rem;
+      max-width:1200px; margin:0 auto;
+      padding:calc(1rem + var(--header-offset)) 1rem 1rem;
+      display:grid; gap:var(--gap-lg);
     }
-  </script>
+
+    /* Desktop: full-width hero row, then two columns underneath */
+    @media (min-width:960px){
+      .project-layout{
+        grid-template-columns:minmax(260px,340px) 1fr;
+        grid-template-areas:
+          "intro intro"
+          "sidebar content";
+        align-items:start;
+      }
+      .page-intro{grid-area:intro;}
+      .sidebar{grid-area:sidebar; position:sticky; top:calc(16px + var(--header-offset));}
+      .content{grid-area:content;}
+    }
+
+    /* Mobile: natural single-column flow */
+    @media (max-width:959.98px){
+      .page-intro{order:0;}
+      .sidebar{order:1;}
+      .content{order:2;}
+    }
+
+    /* --- Page intro / hero / links --- */
+    .page-intro{display:grid; gap:1rem;}
+    .page-intro h1{margin:0;} /* avoid clipping under fixed header */
+    .hero-media{border-radius:12px; overflow:hidden;}
+    .hero-media img{width:100%; display:block;}
+
+    .actions{display:flex; flex-wrap:wrap; gap:.75rem;}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.65rem .9rem; border-radius:10px;
+      border:1px solid rgba(255,255,255,.14); text-decoration:none;
+    }
+
+    /* --- Left column facts --- */
+    .facts-stack{display:flex; flex-direction:column; gap:var(--gap);}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; padding:1rem;
+      background:rgba(255,255,255,.03);
+    }
+    .card h3{margin:0 0 .5rem 0; font-size:1.05rem;}
+
+    /* Bullet spacing fix */
+    .sidebar .facts-stack .card ul{
+      list-style:disc;
+      list-style-position:inside;
+      padding-left:0;
+      margin:0;
+      text-align:left !important;
+    }
+    .sidebar .facts-stack .card li{margin:.25rem 0;}
+
+    .badges{display:flex; flex-wrap:wrap; gap:.5rem;}
+    .badge{
+      padding:.35rem .6rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:.85rem;
+      background:rgba(255,255,255,.05);
+    }
+
+    /* --- Right column sections --- */
+    .section{margin-block:var(--gap-lg);}
+    .section h2{margin:0 0 .25rem 0;}
+
+    /* --- Gallery --- */
+    .gallery{
+      display:grid; gap:.75rem;
+      grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+    }
+    .thumb{
+      display:inline-block; border:1px solid rgba(255,255,255,.12);
+      border-radius:10px; background:none; padding:0; cursor:pointer;
+    }
+    .thumb img{
+      display:block; width:100%; height:100%;
+      object-fit:cover; border-radius:10px;
+    }
+    .thumb[aria-pressed="true"]{outline:2px solid #7aa2ff; outline-offset:2px;}
+
+    :target{scroll-margin-top:calc(90px + var(--header-offset));}
+  </style>
 </head>
 <body>
 
-  <!-- Normal Header -->
+  <!-- Header -->
   <header class="header">
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -30,51 +117,119 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="portfolio">
-    <h1>Galactic Grayzone</h1>
+  <!-- Main -->
+  <main class="portfolio project-layout">
 
-    <!-- Large Main Image -->
-    <div class="main-image-container">
-      <img
-        id="gg-main-image"
-        class="main-image"
-        src="images/gg/logo.png"
-        alt="Galactic Grayzone Main Image"
-      />
-    </div>
-
-    <!-- Image Gallery (Thumbnails) -->
-    <div class="gallery-container">
-      <img
-        class="gallery-thumb"
-        src="images/gg/logo.png"
-        alt="Galactic Grayzone Banner"
-        onclick="updateMainImage('images/gg/logo.png')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/gg/editor.png"
-        alt="Galactic Grayzone Thumbnail 1"
-        onclick="updateMainImage('images/gg/editor.png')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/gg/gameplay.png"
-        alt="Galactic Grayzone Thumbnail 2"
-        onclick="updateMainImage('images/gg/gameplay.png')"
-      />
-    </div>
-
-    <!-- Description -->
-    <section class="description-section">
-      <h2>Description</h2>
-      <p>
-        This is an interactive game showcasing modern C/C++ programming. It leverages the power of raylib for rendering and dearImGui for the graphical user interface. The project includes both a standard game mode and an editor mode.
+    <!-- ROW 1: full-width hero -->
+    <header class="page-intro">
+      <h1>Galactic Grayzone</h1>
+      <p class="lead">
+        Systems-driven C++ game with custom tooling. Built with raylib for rendering and Dear ImGui for in-engine editing.
       </p>
-      <p>
-        <a href="https://github.com/pthtcordnry/galactic-grayzone">Github: Galactic Grayzone</a>
-      </p>
+
+      <div class="hero-media">
+        <img id="gg-hero-image" src="images/gg/logo.png"
+             alt="Galactic Grayzone key art / logo" />
+      </div>
+
+      <nav class="actions" aria-label="Project links">
+        <a class="btn" href="https://github.com/pthtcordnry/galactic-grayzone" target="_blank" rel="noopener">GitHub Repo</a>
+        <!-- Add more:
+        <a class="btn" href="https://your-demo-link" target="_blank" rel="noopener">Playable Demo</a>
+        <a class="btn" href="presskit.zip" target="_blank" rel="noopener">Press Kit</a>
+        -->
+      </nav>
+    </header>
+
+    <!-- ROW 2: two-column grid: LEFT = stacked boxes -->
+    <aside class="sidebar" aria-label="Project facts">
+      <div class="facts-stack">
+        <article class="card">
+          <h3>My Roles</h3>
+          <ul>
+            <li>C++ Gameplay/Systems Programmer</li>
+            <li>Tools &amp; Editor Engineer</li>
+            <li>Renderer/Tech Integration</li>
+            <li>Solo Project</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Skills &amp; Tools</h3>
+          <div class="badges">
+            <span class="badge">C++14</span>
+            <span class="badge">raylib</span>
+            <span class="badge">Dear ImGui</span>
+            <span class="badge">Git</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Contributions &amp; Highlights</h3>
+          <ul>
+            <li>Implemented editor mode with live entity tweaking via ImGui.</li>
+            <li>Component-based gameplay architecture and event bus.</li>
+            <li>Asset pipeline for textures/sprites with hot-reload.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Project Details</h3>
+          <ul>
+            <li><strong>Language:</strong> C++</li>
+            <li><strong>Tech:</strong> raylib, Dear ImGui, OpenGL</li>
+            <li><strong>Platforms:</strong> Windows/macOS</li>
+            <li><strong>Scope:</strong> Solo project</li>
+          </ul>
+        </article>
+      </div>
+    </aside>
+
+    <!-- ROW 2: two-column grid: RIGHT = overview/gallery/contributions -->
+    <section class="content">
+      <section class="section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          Galactic Grayzone is an interactive game showcasing modern C/C++ programming.
+          It leverages raylib for rendering and Dear ImGui for the in-engine UI. The project
+          includes both a standard game mode and an editor mode to iterate rapidly on content.
+        </p>
+      </section>
+
+      <section class="section" id="gallery" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading">Gallery</h2>
+        <div class="gallery" role="list">
+          <button class="thumb" type="button" role="listitem" aria-pressed="true"
+                  data-fullsrc="images/gg/logo.png" aria-label="Show logo key art">
+            <img src="images/gg/logo.png" alt="Logo thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/gg/editor.png" aria-label="Show editor screenshot">
+            <img src="images/gg/editor.png" alt="Editor screenshot thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/gg/gameplay.png" aria-label="Show gameplay screenshot">
+            <img src="images/gg/gameplay.png" alt="Gameplay screenshot thumbnail">
+          </button>
+        </div>
+        <noscript>
+          <p>JavaScript is disabled — open full images:
+            <a href="images/gg/logo.png">Logo</a>,
+            <a href="images/gg/editor.png">Editor</a>,
+            <a href="images/gg/gameplay.png">Gameplay</a>.
+          </p>
+        </noscript>
+      </section>
+
+      <section class="section" id="details">
+        <h2>Technical Contributions</h2>
+        <ul>
+          <li>Entity/component system with deterministic update order.</li>
+          <li>Editor overlays, gizmos, and property panels via ImGui.</li>
+          <li>Sprite/texture loader and batching for efficient draws.</li>
+          <li>Save/load of scene data (JSON) and hot-reload utilities.</li>
+        </ul>
+      </section>
     </section>
   </main>
 
@@ -83,5 +238,49 @@
     <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
   </footer>
 
+  <!-- JS: gallery swap + header offset -->
+  <script>
+    (function(){
+      // Swap hero image from gallery
+      const hero=document.getElementById('gg-hero-image');
+      const gallery=document.querySelector('.gallery');
+      if(hero&&gallery){
+        gallery.addEventListener('click',e=>{
+          const btn=e.target.closest('[data-fullsrc]');
+          if(!btn) return;
+          const src=btn.getAttribute('data-fullsrc');
+          if(src){
+            hero.src=src;
+            gallery.querySelectorAll('.thumb[aria-pressed]').forEach(t=>t.setAttribute('aria-pressed','false'));
+            btn.setAttribute('aria-pressed','true');
+          }
+        });
+        // Optional: keyboard left/right when gallery focused
+        gallery.addEventListener('keydown',e=>{
+          if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+          const items=[...gallery.querySelectorAll('.thumb')];
+          const cur=items.findIndex(b=>b.getAttribute('aria-pressed')==='true');
+          let nx=cur;
+          if(e.key==='ArrowLeft') nx=(cur-1+items.length)%items.length;
+          if(e.key==='ArrowRight') nx=(cur+1)%items.length;
+          items[nx].focus(); items[nx].click();
+        });
+      }
+
+      // Reserve space if header is fixed so H1 isn't clipped
+      const header=document.querySelector('.header');
+      const root=document.documentElement;
+      if(header&&root){
+        const isFixed=()=>getComputedStyle(header).position==='fixed';
+        const apply=()=>{
+          const offset=isFixed()?header.offsetHeight:0;
+          root.style.setProperty('--header-offset',offset+'px');
+        };
+        apply();
+        if(window.ResizeObserver){ new ResizeObserver(apply).observe(header); }
+        addEventListener('resize',apply);
+      }
+    })();
+  </script>
 </body>
 </html>

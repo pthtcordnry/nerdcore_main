@@ -1,27 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Discourage search engines from indexing (if desired) -->
-  <meta name="robots" content="noindex"> 
-
+  <meta name="robots" content="noindex">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VisualLive - VisualLive LLC / Unity Technologies</title>
-  <link rel="stylesheet" href="style.css" />
-  
-  <!-- Simple script to swap main image based on thumbnail click -->
-  <script>
-    function updateMainImage(newSrc) {
-      const mainImg = document.getElementById('vl-main-image');
-      mainImg.src = newSrc;
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>VisualLive — Portfolio Project | NerdCore Enterprises</title>
+
+  <!-- Page-scoped styles (no global font rules). Your site CSS loads AFTER this to win. -->
+  <style>
+    :root { --header-offset: 0px; }
+
+    /* --- Layout container --- */
+    .project-layout{
+      --gap:1rem; --gap-lg:2rem;
+      max-width:1200px; margin:0 auto;
+      padding:calc(1rem + var(--header-offset)) 1rem 1rem;
+      display:grid; gap:var(--gap-lg);
     }
-  </script>
+
+    /* Desktop: full-width hero row, then two columns underneath */
+    @media (min-width:960px){
+      .project-layout{
+        grid-template-columns:minmax(260px,340px) 1fr;
+        grid-template-areas:
+          "intro intro"
+          "sidebar content";
+        align-items:start;
+      }
+      .page-intro{grid-area:intro;}
+      .sidebar{grid-area:sidebar; position:sticky; top:calc(16px + var(--header-offset));}
+      .content{grid-area:content;}
+    }
+
+    /* Mobile: natural single-column flow */
+    @media (max-width:959.98px){
+      .page-intro{order:0;}
+      .sidebar{order:1;}
+      .content{order:2;}
+    }
+
+    /* --- Page intro / hero / links --- */
+    .page-intro{display:grid; gap:1rem;}
+    .page-intro h1{margin:0;} /* avoid clipping under fixed header */
+    .hero-media{border-radius:12px; overflow:hidden;}
+    .hero-media img{width:100%; display:block;}
+
+    .actions{display:flex; flex-wrap:wrap; gap:.75rem;}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.65rem .9rem; border-radius:10px;
+      border:1px solid rgba(255,255,255,.14); text-decoration:none;
+    }
+
+    /* --- Left column facts --- */
+    .facts-stack{display:flex; flex-direction:column; gap:var(--gap);}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; padding:1rem;
+      background:rgba(255,255,255,.03);
+    }
+    .card h3{margin:0 0 .5rem 0; font-size:1.05rem;}
+
+    /* Bullet spacing fix */
+    .sidebar .facts-stack .card ul{
+      list-style:disc;
+      list-style-position:inside;
+      padding-left:0;
+      margin:0;
+      text-align:left !important;
+    }
+    .sidebar .facts-stack .card li{margin:.25rem 0;}
+
+    .badges{display:flex; flex-wrap:wrap; gap:.5rem;}
+    .badge{
+      padding:.35rem .6rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:.85rem;
+      background:rgba(255,255,255,.05);
+    }
+
+    /* --- Right column sections --- */
+    .section{margin-block:var(--gap-lg);}
+    .section h2{margin:0 0 .25rem 0;}
+
+    /* --- Gallery --- */
+    .gallery{
+      display:grid; gap:.75rem;
+      grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+    }
+    .thumb{
+      display:inline-block; border:1px solid rgba(255,255,255,.12);
+      border-radius:10px; background:none; padding:0; cursor:pointer;
+    }
+    .thumb img{
+      display:block; width:100%; height:100%;
+      object-fit:cover; border-radius:10px;
+    }
+    .thumb[aria-pressed="true"]{outline:2px solid #7aa2ff; outline-offset:2px;}
+
+    :target{scroll-margin-top:calc(90px + var(--header-offset));}
+  </style>
+
+  <!-- Your site styles (fonts/colors/typography). Loaded last to override if needed. -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Normal Header -->
+  <!-- Header -->
   <header class="header">
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -30,55 +117,118 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="portfolio">
-    <h1>VisualLive</h1>
+  <!-- Main -->
+  <main class="portfolio project-layout">
 
-    <!-- Large Main Image -->
-    <div class="main-image-container">
-      <img
-        id="vl-main-image"
-        class="main-image"
-        src="images/vl/logo.png"
-        alt="VisualLive Main Image"
-      />
-    </div>
-
-    <!-- Image Gallery (Thumbnails) -->
-    <div class="gallery-container">
-      <img
-        class="gallery-thumb"
-        src="images/vl/logo.png"
-        alt="VisualLive Banner"
-        onclick="updateMainImage('images/vl/logo.png')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/vl/overview.png"
-        alt="VisualLive Thumbnail 1"
-        onclick="updateMainImage('images/vl/overview.png')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/vl/hololens.png"
-        alt="VisualLive Thumbnail 2"
-        onclick="updateMainImage('images/vl/hololens.png')"
-      />
-    </div>
-
-    <!-- Description -->
-    <section class="description-section">
-      <h2>Description</h2>
-      <p>
-        With VisualLive, you can push your 3D models to your mobile device to view in 1:1 scale, 
-        bringing the virtual world into the jobsite using our Revit and Navisworks plugins. 
-        Your BIM is locked down to its real-world location so you can freely walk around the 
-        model and explore it from all angles.
+    <!-- ROW 1: full-width hero -->
+    <header class="page-intro">
+      <h1>VisualLive</h1>
+      <p class="lead">
+        Push BIM/CAD models to mobile and HoloLens for 1:1, on-site AR—align to the real world and collaborate in the field.
       </p>
-      <p>
-        <a href="https://create.unity.com/visual-live-onboarding">Unity: VisualLive</a><br>
-        <a href="https://apps.apple.com/us/app/visuallive/id1294836946">Appstore: VisualLive</a>
-      </p>
+
+      <div class="hero-media">
+        <img id="vl-hero-image" src="images/vl/logo.png"
+             alt="VisualLive logo / key art" />
+      </div>
+
+      <nav class="actions" aria-label="Project links">
+        <a class="btn" href="https://create.unity.com/visual-live-onboarding" target="_blank" rel="noopener">Unity: VisualLive</a>
+        <a class="btn" href="https://apps.apple.com/us/app/visuallive/id1294836946" target="_blank" rel="noopener">App Store</a>
+      </nav>
+    </header>
+
+    <!-- ROW 2: two-column grid: LEFT = stacked boxes -->
+    <aside class="sidebar" aria-label="Project facts">
+      <div class="facts-stack">
+        <article class="card">
+          <h3>My Roles</h3>
+          <ul>
+            <li>Unity Developer</li>
+            <li>Platform Specialist</li>
+            <li>Solutions Engineer</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Skills &amp; Tools</h3>
+          <div class="badges">
+            <span class="badge">Unity</span>
+            <span class="badge">C#</span>
+            <span class="badge">AR Foundation</span>
+            <span class="badge">HoloLens / MRTK</span>
+            <span class="badge">ARKit / ARCore</span>
+            <span class="badge">BIM / CAD</span>
+            <span class="badge">Anchoring/Alignment</span>
+            <span class="badge">Azure</span>
+            <span class="badge">Git</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Contributions &amp; Highlights</h3>
+          <ul>
+            <li>Revit/Navisworks plugin flows to publish models to devices.</li>
+            <li>AR alignment tools (markers/planes) for 1:1 scale on site.</li>
+            <li>Mobile/HoloLens UI with intuitive review workflows.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Project Details</h3>
+          <ul>
+            <li><strong>Engine:</strong> Unity</li>
+            <li><strong>Targets:</strong> iOS/Android, HoloLens</li>
+            <li><strong>Use Case:</strong> AEC field visualization</li>
+          </ul>
+        </article>
+      </div>
+    </aside>
+
+    <!-- ROW 2: two-column grid: RIGHT = overview/gallery/contributions -->
+    <section class="content">
+      <section class="section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          With VisualLive, teams could push 3D models from Revit/Navisworks to mobile or HoloLens,
+          lock BIM to real-world coordinates, and walk around designs at true scale. The goal was
+          fast field validation and clearer communication with stakeholders.
+        </p>
+      </section>
+
+      <section class="section" id="gallery" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading">Gallery</h2>
+        <div class="gallery" role="list">
+          <button class="thumb" type="button" role="listitem" aria-pressed="true"
+                  data-fullsrc="images/vl/logo.png" aria-label="Show logo key art">
+            <img src="images/vl/logo.png" alt="Logo thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/vl/overview.png" aria-label="Show overview screens">
+            <img src="images/vl/overview.png" alt="Overview screens thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/vl/hololens.png" aria-label="Show HoloLens view">
+            <img src="images/vl/hololens.png" alt="HoloLens view thumbnail">
+          </button>
+        </div>
+        <noscript>
+          <p>JavaScript is disabled — open full images:
+            <a href="images/vl/logo.png">Logo</a>,
+            <a href="images/vl/overview.png">Overview</a>,
+            <a href="images/vl/hololens.png">HoloLens</a>.
+          </p>
+        </noscript>
+      </section>
+
+      <section class="section" id="details">
+        <h2>Technical Contributions</h2>
+        <ul>
+          <li>Publish pipeline from desktop plugins to device-ready assets.</li>
+          <li>On-device alignment UX for accurate placement at job sites.</li>
+          <li>Lightweight AR interaction patterns for selection & measure.</li>
+        </ul>
+      </section>
     </section>
   </main>
 
@@ -87,5 +237,49 @@
     <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
   </footer>
 
+  <!-- JS: gallery swap + header offset -->
+  <script>
+    (function(){
+      // Swap hero image from gallery
+      const hero=document.getElementById('vl-hero-image');
+      const gallery=document.querySelector('.gallery');
+      if(hero&&gallery){
+        gallery.addEventListener('click',e=>{
+          const btn=e.target.closest('[data-fullsrc]');
+          if(!btn) return;
+          const src=btn.getAttribute('data-fullsrc');
+          if(src){
+            hero.src=src;
+            gallery.querySelectorAll('.thumb[aria-pressed]').forEach(t=>t.setAttribute('aria-pressed','false'));
+            btn.setAttribute('aria-pressed','true');
+          }
+        });
+        // Optional keyboard nav
+        gallery.addEventListener('keydown',e=>{
+          if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+          const items=[...gallery.querySelectorAll('.thumb')];
+          const cur=items.findIndex(b=>b.getAttribute('aria-pressed')==='true');
+          let nx=cur;
+          if(e.key==='ArrowLeft') nx=(cur-1+items.length)%items.length;
+          if(e.key==='ArrowRight') nx=(cur+1)%items.length;
+          items[nx].focus(); items[nx].click();
+        });
+      }
+
+      // Reserve space if header is fixed so H1 isn't clipped
+      const header=document.querySelector('.header');
+      const root=document.documentElement;
+      if(header&&root){
+        const isFixed=()=>getComputedStyle(header).position==='fixed';
+        const apply=()=>{
+          const offset=isFixed()?header.offsetHeight:0;
+          root.style.setProperty('--header-offset',offset+'px');
+        };
+        apply();
+        if(window.ResizeObserver){ new ResizeObserver(apply).observe(header); }
+        addEventListener('resize',apply);
+      }
+    })();
+  </script>
 </body>
 </html>
