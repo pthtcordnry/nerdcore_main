@@ -1,27 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Discourage search engines from indexing (if desired) -->
-  <meta name="robots" content="noindex"> 
-
+  <meta name="robots" content="noindex">
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Morpheus - NerdCore Enterprises</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Morpheus — Portfolio Project | NerdCore Enterprises</title>
+
+  <!-- Your site styles (keeps your fonts/colors). -->
   <link rel="stylesheet" href="style.css" />
-  
-  <!-- Simple script to swap main image based on thumbnail click -->
-  <script>
-    function updateMainImage(newSrc) {
-      const mainImg = document.getElementById('morpheus-main-image');
-      mainImg.src = newSrc;
+
+  <!-- Page-scoped styles -->
+  <style>
+    :root { --header-offset: 0px; }
+
+    /* --- Layout container --- */
+    .project-layout{
+      --gap:1rem; --gap-lg:2rem;
+      max-width:1200px; margin:0 auto;
+      padding:calc(1rem + var(--header-offset)) 1rem 1rem;
+      display:grid; gap:var(--gap-lg);
     }
-  </script>
+
+    /* Desktop: full-width hero row, then two columns underneath */
+    @media (min-width:960px){
+      .project-layout{
+        grid-template-columns:minmax(260px,340px) 1fr;
+        grid-template-areas:
+          "intro intro"
+          "sidebar content";
+        align-items:start;
+      }
+      .page-intro{grid-area:intro;}
+      .sidebar{grid-area:sidebar; position:sticky; top:calc(16px + var(--header-offset));}
+      .content{grid-area:content;}
+    }
+
+    /* Mobile: natural single-column flow */
+    @media (max-width:959.98px){
+      .page-intro{order:0;}
+      .sidebar{order:1;}
+      .content{order:2;}
+    }
+
+    /* --- Page intro / hero / links --- */
+    .page-intro{display:grid; gap:1rem;}
+    .page-intro h1{margin:0;} /* prevent clipping under fixed header */
+    .hero-media{border-radius:12px; overflow:hidden;}
+    .hero-media img{width:100%; display:block;}
+
+    .actions{display:flex; flex-wrap:wrap; gap:.75rem;}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.65rem .9rem; border-radius:10px;
+      border:1px solid rgba(255,255,255,.14); text-decoration:none;
+    }
+
+    /* --- Left column facts --- */
+    .facts-stack{display:flex; flex-direction:column; gap:var(--gap);}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; padding:1rem;
+      background:rgba(255,255,255,.03);
+    }
+    .card h3{margin:0 0 .5rem 0; font-size:1.05rem;}
+
+    /* BULLET FIX: keep bullets inside the card and left-aligned */
+    .sidebar .facts-stack .card ul{
+      list-style:disc;
+      list-style-position:inside;
+      padding-left:0;
+      margin:0;
+      text-align:left !important; /* beat any centered text rules */
+    }
+    .sidebar .facts-stack .card li{margin:.25rem 0;}
+
+    .badges{display:flex; flex-wrap:wrap; gap:.5rem;}
+    .badge{
+      padding:.35rem .6rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:.85rem;
+      background:rgba(255,255,255,.05);
+    }
+
+    /* --- Right column sections --- */
+    .section{margin-block:var(--gap-lg);}
+    .section h2{margin:0 0 .25rem 0;}
+
+    /* --- Gallery --- */
+    .gallery{
+      display:grid; gap:.75rem;
+      grid-template-columns:repeat(auto-fit, minmax(120px,1fr));
+    }
+    .thumb{
+      display:inline-block; border:1px solid rgba(255,255,255,.12);
+      border-radius:10px; background:none; padding:0; cursor:pointer;
+    }
+    .thumb img{
+      display:block; width:100%; height:100%;
+      object-fit:cover; border-radius:10px;
+    }
+    .thumb[aria-pressed="true"]{outline:2px solid #7aa2ff; outline-offset:2px;}
+
+    :target{scroll-margin-top:calc(90px + var(--header-offset));}
+  </style>
 </head>
 <body>
 
-  <!-- Normal Header -->
+  <!-- Header -->
   <header class="header">
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Primary">
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="portfolio.html">Portfolio</a></li>
@@ -30,54 +117,117 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="portfolio">
-    <h1>Morpheus</h1>
+  <!-- Main -->
+  <main class="portfolio project-layout">
 
-    <!-- Large Main Image -->
-    <div class="main-image-container">
-      <img
-        id="morpheus-main-image"
-        class="main-image"
-        src="images/morpheus/morpheus_banner.jpg"
-        alt="Morpheus Main Image"
-      />
-    </div>
-
-    <!-- Image Gallery (Thumbnails) -->
-    <div class="gallery-container">
-      <img
-        class="gallery-thumb"
-        src="images/morpheus/morpheus_banner.jpg"
-        alt="Morpheus Banner"
-        onclick="updateMainImage('images/morpheus/morpheus_banner.jpg')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/morpheus/slime.gif"
-        alt="Morpheus Thumbnail 1"
-        onclick="updateMainImage('images/morpheus/slime.gif')"
-      />
-      <img
-        class="gallery-thumb"
-        src="images/morpheus/golem.gif"
-        alt="Morpheus Thumbnail 2"
-        onclick="updateMainImage('images/morpheus/golem.gif')"
-      />
-    </div>
-
-    <!-- Description -->
-    <section class="description-section">
-      <h2>Description</h2>
-      <p>
-        Morpheus is an immersive, story-driven adventure that blends puzzle-solving 
-        with rich narrative elements. Players journey through a dreamlike universe, 
-        unraveling mysteries across shifting landscapes and interacting with a cast of 
-        enigmatic characters. Developed in Unity, Morpheus delivers a truly engaging experience.
+    <!-- ROW 1: full-width hero -->
+    <header class="page-intro">
+      <h1>Morpheus</h1>
+      <p class="lead">
+        Story-driven adventure blending puzzle-solving and narrative across dreamlike landscapes.
       </p>
-      <p>
-        <a href="https://www.infinitivegames.com/morpheus.html">Infinitive Games: Morpheus</a>
-      </p>
+
+      <div class="hero-media">
+        <img id="hero-image" src="images/morpheus/morpheus_banner.jpg"
+             alt="Key art for Morpheus showing a dreamlike landscape" />
+      </div>
+
+      <nav class="actions" aria-label="Project links">
+        <a class="btn" href="https://www.infinitivegames.com/morpheus.html" target="_blank" rel="noopener">Official Page</a>
+      </nav>
+    </header>
+
+    <!-- ROW 2: two-column grid -->
+    <aside class="sidebar" aria-label="Project facts">
+      <div class="facts-stack">
+        <article class="card">
+          <h3>My Roles</h3>
+          <ul>
+            <li>Gameplay Programmer</li>
+            <li>Tools/Editor Engineer</li>
+            <li>Technical Art Support</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Skills &amp; Tools</h3>
+          <div class="badges">
+            <span class="badge">Unity</span>
+            <span class="badge">C#</span>
+            <span class="badge">Shader Graph</span>
+            <span class="badge">Git</span>
+            <span class="badge">Profiling/Optimization</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Contributions &amp; Highlights</h3>
+          <ul>
+            <li>Implemented puzzle interaction systems and save/load flow.</li>
+            <li>Built custom editor tooling to author game sequences and events faster.</li>
+            <li>Optimized assets and characters for intuitive gameplay.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Project Details</h3>
+          <ul>
+            <li><strong>Engine:</strong> Unity</li>
+            <li><strong>Platforms:</strong> PC (Windows), macOS</li>
+            <li><strong>Team Size:</strong> 6</li>
+            <li><strong>Timeframe:</strong> 2016–2020</li>
+          </ul>
+        </article>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          Morpheus is an immersive, story-driven adventure that blends puzzle-solving
+          with rich narrative elements. Players journey through a dreamlike universe,
+          unraveling mysteries across shifting landscapes and interacting with a cast of
+          enigmatic characters.
+        </p>
+        <p>
+          On this project I focused on gameplay systems, tooling, and characters. Below is a snapshot of visuals and a breakdown of my specific contributions.
+        </p>
+      </section>
+
+      <section class="section" id="gallery" aria-labelledby="gallery-heading">
+        <h2 id="gallery-heading">Gallery</h2>
+        <div class="gallery" role="list">
+          <button class="thumb" type="button" role="listitem" aria-pressed="true"
+                  data-fullsrc="images/morpheus/morpheus_banner.jpg" aria-label="Show banner">
+            <img src="images/morpheus/morpheus_banner.jpg" alt="Banner art thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/morpheus/slime.gif" aria-label="Show slime enemy animation">
+            <img src="images/morpheus/slime.gif" alt="Slime enemy animation thumbnail">
+          </button>
+          <button class="thumb" type="button" role="listitem" aria-pressed="false"
+                  data-fullsrc="images/morpheus/golem.gif" aria-label="Show golem animation">
+            <img src="images/morpheus/golem.gif" alt="Golem animation thumbnail">
+          </button>
+        </div>
+        <noscript>
+          <p>JavaScript is disabled — open full images:
+            <a href="images/morpheus/morpheus_banner.jpg">Banner</a>,
+            <a href="images/morpheus/slime.gif">Slime</a>,
+            <a href="images/morpheus/golem.gif">Golem</a>.
+          </p>
+        </noscript>
+      </section>
+
+      <section class="section" id="details">
+        <h2>My Contributions</h2>
+        <ul>
+          <li>Designed modular puzzle components (triggers, states, blockers) with data-driven configuration.</li>
+          <li>Created in-editor tooling for events and designers.</li>
+          <li>Collaborated with art to integrate character assets and features.</li>
+        </ul>
+      </section>
     </section>
   </main>
 
@@ -86,5 +236,39 @@
     <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
   </footer>
 
+  <!-- JS: gallery swap + header offset -->
+  <script>
+    (function(){
+      // Swap hero image from gallery
+      const hero=document.getElementById('hero-image');
+      const gallery=document.querySelector('.gallery');
+      if(hero&&gallery){
+        gallery.addEventListener('click',e=>{
+          const btn=e.target.closest('[data-fullsrc]');
+          if(!btn) return;
+          const src=btn.getAttribute('data-fullsrc');
+          if(src){
+            hero.src=src;
+            gallery.querySelectorAll('.thumb[aria-pressed]').forEach(t=>t.setAttribute('aria-pressed','false'));
+            btn.setAttribute('aria-pressed','true');
+          }
+        });
+      }
+
+      // Reserve space if header is fixed
+      const header=document.querySelector('.header');
+      const root=document.documentElement;
+      if(header&&root){
+        const isFixed=()=>getComputedStyle(header).position==='fixed';
+        const apply=()=>{
+          const offset=isFixed()?header.offsetHeight:0;
+          root.style.setProperty('--header-offset',offset+'px');
+        };
+        apply();
+        if(window.ResizeObserver){ new ResizeObserver(apply).observe(header); }
+        window.addEventListener('resize',apply);
+      }
+    })();
+  </script>
 </body>
 </html>
