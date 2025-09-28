@@ -6,6 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio - NerdCore Enterprises</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Keep the "Engines & Tools" row aligned to the same 3-card grid */
+    .project-grid.cols-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(260px, 1fr));
+      gap: var(--gap, 1rem);
+    }
+    /* Invisible placeholders to reserve equal card widths */
+    .project-card.ghost {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
   <!-- Fixed Header with Mobile Navigation Toggle -->
@@ -62,6 +75,20 @@
         <p>"Powering the enterprise metaverse through real-time 3D, AR, VR, and XR technology."</p>
       </a>
     </div>
+
+    <!-- Engines & Tools Row -->
+    <h2>Engines &amp; Tools</h2>
+    <div class="project-grid cols-3">
+      <a href="rastral_engine.html" class="project-card">
+        <h2>Rastral Engine</h2>
+        <p>Cross-platform C++17 engine showcasing rendering, animation, audio and platform skills.</p>
+      </a>
+
+      <!-- Ghosts to keep card width consistent across the row -->
+      <a class="project-card ghost" aria-hidden="true"></a>
+      <a class="project-card ghost" aria-hidden="true"></a>
+    </div>
+  </main>
 
   <!-- Footer -->
   <footer class="footer">
