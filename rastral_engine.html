@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>WebGL Visualizer — Portfolio Project | NerdCore Enterprises</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root { --header-offset: 0px; }
+
+    .project-layout{
+      --gap:1rem; --gap-lg:2rem;
+      max-width:1200px; margin:0 auto;
+      padding:calc(1rem + var(--header-offset)) 1rem 1rem;
+      display:grid; gap:var(--gap-lg);
+    }
+    @media (min-width:960px){
+      .project-layout{
+        grid-template-columns:minmax(260px,340px) 1fr;
+        grid-template-areas:
+          "intro intro"
+          "sidebar content";
+        align-items:start;
+      }
+      .page-intro{grid-area:intro;}
+      .sidebar{grid-area:sidebar; position:sticky; top:calc(16px + var(--header-offset));}
+      .content{grid-area:content;}
+    }
+    @media (max-width:959.98px){
+      .page-intro{order:0;}
+      .sidebar{order:1;}
+      .content{order:2;}
+    }
+
+    .page-intro{display:grid; gap:1rem;}
+    .page-intro h1{margin:0;}
+
+    .hero-media{
+      position:relative;
+      border-radius:12px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      min-height:360px; height:clamp(360px, 62vh, 720px);
+    }
+    #canvas{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      display:block; outline:none;
+      background:#0b0f14; image-rendering:pixelated;
+    }
+
+    .chip{
+      position:absolute; z-index:2;
+      padding:.5rem .75rem; border-radius:10px;
+      font-size:.85rem; line-height:1;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:var(--muted, #8b949e);
+      pointer-events:none;
+    }
+    #status{ left:12px; bottom:12px; max-width:min(70vw,560px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #hint{ right:12px; bottom:12px; }
+    .err{ color:#ff6b6b; }
+    @media (hover:hover) and (pointer:fine){ #hint{ display:none; } }
+
+    .facts-stack{display:flex; flex-direction:column; gap:var(--gap);}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:12px; padding:1rem;
+      background:rgba(255,255,255,.03);
+    }
+    .card h3{margin:0 0 .5rem 0; font-size:1.05rem;}
+    .sidebar .facts-stack .card ul{
+      list-style:disc; list-style-position:inside;
+      padding-left:0; margin:0; text-align:left !important;
+    }
+    .sidebar .facts-stack .card li{margin:.25rem 0;}
+    .badges{display:flex; flex-wrap:wrap; gap:.5rem;}
+    .badge{
+      padding:.35rem .6rem; border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      font-size:.85rem; background:rgba(255,255,255,.05);
+    }
+
+    .actions{display:flex; flex-wrap:wrap; gap:.75rem;}
+    .btn{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.65rem .9rem; border-radius:10px;
+      border:1px solid rgba(255,255,255,.14); text-decoration:none;
+    }
+
+    .section{margin-block:var(--gap-lg);}
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav class="top-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="portfolio project-layout">
+    <header class="page-intro">
+      <h1>Rastral Engine</h1>
+      <p class="lead">
+        <br><em>Usage:</em> Arrows orbit • W/S zoom • Z/X scale • Space frame • R reset • 1–4 music/anim • – / + rage
+      </p>
+
+      <div class="hero-media">
+        <canvas id="canvas" tabindex="0" aria-label="WebGL rendering area"></canvas>
+        <div id="status" class="chip">Loading…</div>
+        <div id="hint" class="chip">Click / tap to enable audio</div>
+      </div>
+    </header>
+
+    <aside class="sidebar" aria-label="Project facts">
+      <div class="facts-stack">
+        <article class="card">
+          <h3>My Role</h3>
+          <ul><li>Sole Developer (engine, rendering, audio, UX)</li></ul>
+        </article>
+
+        <article class="card">
+          <h3>Platforms</h3>
+          <div class="badges">
+            <span class="badge">Windows (Win32/OpenGL)</span>
+            <span class="badge">Web (WebGL2/WASM)</span>
+          </div>
+          <ul>
+            <li>Shared engine core; backend abstractions for context, shaders, buffers, textures.</li>
+            <li>Web port via Emscripten with modular JS wrapper.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Skills &amp; Tools</h3>
+          <div class="badges">
+            <span class="badge">C++17</span>
+            <span class="badge">Emscripten</span>
+            <span class="badge">WebGL2 / ES 3.0</span>
+            <span class="badge">OpenGL / GLSL</span>
+            <span class="badge">GLTF 2.0</span>
+            <span class="badge">Audio DSP</span>
+            <span class="badge">miniaudio</span>
+            <span class="badge">Tooling &amp; Packaging</span>
+            <span class="badge">Perf &amp; Profiling</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Contributions &amp; Highlights</h3>
+          <ul>
+            <li>Native → Web port: preserved feature parity moving from Win32/OpenGL to WebGL2/WASM.</li>
+            <li>Audio-reactive pipeline: multi-stem music director, RMS/peak/bands analysis, spectrum texture driving post.</li>
+            <li>Skinned GLTF animation mixer with timed crossfades (idle/dance), bone palette UBO updates per draw.</li>
+            <li>Fullscreen post pass visualizer with camera uniforms (near/far, P00/P11) and DPR-aware viewport.</li>
+            <li>Preloaded virtual FS for shaders/models/audio via <code>--preload-file</code>.</li>
+            <li>Robust input mapping and graceful audio unlock on first gesture.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Project Details</h3>
+          <ul>
+            <li><strong>Language:</strong> C++</li>
+            <li><strong>Tech:</strong> Emscripten, WebGL2/GLSL, GLTF2, miniaudio</li>
+            <li><strong>Platforms:</strong> Windows (Win32/OpenGL), Web (WebGL2/WASM)</li>
+            <li><strong>Scope:</strong> Solo project / engine showcase</li>
+          </ul>
+        </article>
+      </div>
+    </aside>
+
+    <section class="content">
+      <section class="section" id="overview">
+        <h2>Overview</h2>
+        <p>
+          The Rastral Engine began life as a native Win32/OpenGL application. It was ported to WebGL2 with Emscripten,
+          retaining skinned animation, post-processing, and an audio-driven visualizer. It was built to conceptualize skills
+          across various platforms and disciplines. This build uses 4 total audio stems and blends them at runtime to create a 
+          synced loopable track. It also includes synchronization with animation to make the response as "realistic" as possible.
+          The animation and audio "states" are bound to the 1-4 keys, and each "state" changes the audio and animation reations. 
+          This is using a custom GLTF importer using TinyGLTF, and it implements "Mixamo" rigs currently.
+        </p>
+      </section>
+
+      <section class="section" id="tech-notes">
+        <h2>Technical Notes</h2>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 NerdCore Enterprises. All rights reserved.</p>
+  </footer>
+
+  <script src="webbuild/engine.js"></script>
+  <script>
+  (function () {
+    const header = document.querySelector('.header');
+    const root = document.documentElement;
+    if (header && root) {
+      const isFixed = () => getComputedStyle(header).position === 'fixed';
+      const apply = () => root.style.setProperty('--header-offset', (isFixed() ? header.offsetHeight : 0) + 'px');
+      apply();
+      if (window.ResizeObserver) new ResizeObserver(apply).observe(header);
+      addEventListener('resize', apply);
+    }
+
+    const canvas = document.getElementById('canvas');
+    const statusEl = document.getElementById('status');
+    const hintEl = document.getElementById('hint');
+
+    function resizeBackingStore() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr  = Math.max(1, window.devicePixelRatio || 1);
+      const w = Math.max(1, Math.floor(rect.width  * dpr));
+      const h = Math.max(1, Math.floor(rect.height * dpr));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width  = w;
+        canvas.height = h;
+        window.dispatchEvent(new Event('resize'));
+      }
+    }
+
+    const clearHint = () => { if (hintEl) hintEl.style.display = 'none'; };
+    canvas.addEventListener('click', () => { canvas.focus(); clearHint(); }, { passive: true });
+    canvas.addEventListener('touchstart', () => { canvas.focus(); clearHint(); }, { passive: true });
+    window.addEventListener('keydown', clearHint, { once: true });
+    window.addEventListener('mousedown', clearHint, { once: true });
+    window.addEventListener('touchstart', clearHint, { once: true });
+
+    resizeBackingStore();
+
+    const moduleConfig = {
+      locateFile: (path) => path.endsWith('.wasm') ? 'webbuild/engine.wasm'
+                           : path.endsWith('.data') ? 'webbuild/engine.data'
+                           : path,
+      print: (t) => { if (statusEl) statusEl.textContent = String(t); console.log(t); },
+      printErr: (t) => { if (statusEl) { statusEl.textContent = String(t); statusEl.classList.add('err'); } console.error(t); },
+      canvas
+    };
+
+    createEngine(moduleConfig).then((Module) => {
+      window.Module = Module;
+      window.addEventListener('resize', resizeBackingStore);
+      resizeBackingStore();
+      if (statusEl) statusEl.textContent = 'Running…';
+    }).catch((err) => {
+      if (statusEl) { statusEl.textContent = 'Failed to initialize.'; statusEl.classList.add('err'); }
+      console.error('Engine init failed:', err);
+    });
+  })();
+  </script>
+</body>
+</html>
